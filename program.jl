@@ -1,11 +1,13 @@
+using HttpServer
 using Jolt
 
 app = jolt()
 
 app.use() do req, res, ctx
-	println("middleware running before controller")
+	url = req.resource
+	println("start $url")
 	produce()
-	println("middleware running after controller")
+	println("end $url")
 end
 
 app.get("/") do req, res, ctx
@@ -13,8 +15,11 @@ app.get("/") do req, res, ctx
 end
 
 app.get("/hello/:name") do req, res, ctx
-  name = ctx.params[:name]
-  "hello $name"
+	name = ctx.params[:name]
+	"hello $name"
 end
 
-start(app, 8000)
+http = HttpHandler(app.dispatch) 
+server = Server(http)
+run(server, 8080)
+

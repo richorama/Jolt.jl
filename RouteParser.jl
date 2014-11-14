@@ -49,8 +49,7 @@ function isMatch(path::String, route::String)
 		if (segment.segmentType == :variable)
 			params[symbol(segment.name[2:end])] = part
 			continue
-		end
-		if (segment.segmentType == :segment)
+		elseif (segment.segmentType == :segment)
 			if (part != segment.name)
 				return
 			end
