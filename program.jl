@@ -11,7 +11,7 @@ app.use() do req, res, ctx
 end
 
 app.get("/") do req, res, ctx
-  "hello world"
+	"hello world"
 end
 
 app.get("/hello/:name") do req, res, ctx
