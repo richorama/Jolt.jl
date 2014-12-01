@@ -1,5 +1,4 @@
 ##### TODO
-# plug into http server
 # server side templating
 # json response
 # body parser
@@ -12,7 +11,11 @@ module Jolt
 using RouteParser
 using HttpServer
 
+
 export jolt
+export Action
+
+abstract Action
 
 immutable Route
 	path::String
@@ -77,6 +80,10 @@ type App
 			end
 
 			output = route.handler(req, res, ctx)
+
+			if isa(output,Action)
+				output = output.dispatch(req, res, ctx)
+			end
 
 			for func in middlewares
 				consume(func)

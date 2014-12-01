@@ -1,5 +1,6 @@
 using HttpServer
 using Jolt
+using JoltView
 
 app = jolt()
 
@@ -17,6 +18,10 @@ end
 app.get("/hello/:name") do req, res, ctx
 	name = ctx.params[:name]
 	"hello $name"
+end
+
+app.get("/view/:name") do req, res, ctx
+	View("test", {"Name" => ctx.params[:name]})
 end
 
 http = HttpHandler(app.dispatch) 
