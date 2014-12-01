@@ -15,7 +15,7 @@ type View <: Action
 		instance.data = data
 		instance.dispatch = function(req, res, ctx)
 			tmpl = ""
-			open(string(".\\", instance.template, ".html")) do f
+			open(string(".\\views\\", instance.template, ".html")) do f
 				tmpl = readall(f)
 			end
 			render(tmpl, data)

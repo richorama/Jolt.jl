@@ -1,5 +1,4 @@
 ##### TODO
-# server side templating
 # json response
 # body parser
 # serve files
