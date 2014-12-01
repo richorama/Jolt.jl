@@ -18,6 +18,7 @@ type View <: Action
 			open(string(".\\views\\", instance.template, ".html")) do f
 				tmpl = readall(f)
 			end
+			res.headers["Content-Type"] = "text/html"
 			render(tmpl, data)
 			
 		end

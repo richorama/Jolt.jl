@@ -61,6 +61,19 @@ app.get("/view/:name") do req, res, ctx
 end
 ```
 
+## JSON
+
+Return a JSON response:
+
+```julia
+app.get("/json/:foo") do req, res, ctx
+	x = Dict{String,Any}()
+	x["foo"] = ctx.params[:foo]
+	Json(x)
+end
+```
+
+
 ## License
 
 MIT
